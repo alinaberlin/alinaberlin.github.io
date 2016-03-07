@@ -21,4 +21,29 @@ for (var i = 0; i<bio.skills.length; i++){
 	var skill = HTMLskills.replace("%data%",bio.skills[i]);
 	console.log(skill);
 	$("#skills").append(skill);
-}
+};
+
+var work = [{
+	"title": "marketing research analist",
+	"employer": "Trend Test GmbH",
+	"city": "Berlin",
+	"country": "Germany",
+	"period": "1.05.2015-present",
+	"description": "Explain about the research and how it’ll be used"
+}, {
+	"title": "sales director",
+	"employer": "Briela",
+	"city": "Botosani",
+	"country": "Romania",
+	"period": "15.06.2005-15.10.2012",
+	"description": "manage a sales team"
+}];
+var employerJob = HTMLworkEmployer.replace("%data%",work[0].employer);
+var titleJob = HTMLworkTitle.replace("%data%",work[0].title);
+var periodjob = HTMLworkDates.replace("%data%",work[0].period); 
+var descriptionJob = HTMLworkDescription.replace("%data%",work[0].description);
+var city = HTMLworkLocation.replace("%data%",work[0].city + ", " + work[0].country);
+$("#workExperience").append(HTMLworkStart);
+$(".work-entry").append(employerJob);
+$(".work-entry").append(titleJob);
+

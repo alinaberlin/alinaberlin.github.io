@@ -7,7 +7,7 @@ var bio = {
 	    "email": "alina.ghetler@gmail.com",
 	    "github": "alinaberlin"
 	},
-	"biopic": "http://t1.gstatic.com/images?q=tbn:ANd9GcRI6C_T0Gc7gfNXs-sfvYYqxeoH2Mb-KnTPSAEZ3miDFYqjIkMZw68P",
+	"biopic": "images/me.jpg",
 	"welcomeMessage": "Hello that's me!",
 	"display": function() {}
 };
@@ -42,6 +42,16 @@ for(contact in bio.contacts){
 	var formattedContact = HTMLcontactGeneric.replace("%contact%",contact).replace("%data%",bio.contacts[contact]);
 	$("#topContacts").append(formattedContact);
 }
+var welcomeMessage =  HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
+var bioPic =  HTMLbioPic.replace("%data%",bio.biopic);
+$("#header").append(bioPic); 
+$('#header').append(welcomeMessage);
+$("#header").append(HTMLskillsStart);
+for(skill in bio.skills){
+	var formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
+	$("#skills").append(formattedSkill);
+
+}
 
 var work = {"jobs":
    [{
@@ -57,22 +67,33 @@ var work = {"jobs":
 "dates": "15.06.2005-15.10.2012",
 "description": "manage a sales team"
 }],"display": function() { }};
+function displayWork(){
 
-
-for (job in work.jobs) {
-  $("#workExperience").append(HTMLworkStart);
-  var workLine = HTMLworkEmployer.replace("%data%", work.jobs[job]['employer'])
-  + HTMLworkTitle.replace("%data%", work.jobs[job]["title"]);
-  console.log(workLine);
-  workLine = workLine + HTMLworkDates.replace("%data%", work.jobs[job]["dates"]);
-  workLine = workLine + HTMLworkLocation.replace("%data%", work.jobs[job]["location"]);
-  workLine = workLine + HTMLworkDescription.replace("%data%", work.jobs[job]["description"]);
-  
-  $(".work-entry:last").append(workLine);
+	for (job in work.jobs) {
+	  $("#workExperience").append(HTMLworkStart);
+	  var workLine = HTMLworkEmployer.replace("%data%", work.jobs[job]['employer'])
+	  + HTMLworkTitle.replace("%data%", work.jobs[job]["title"]);
+	  console.log(workLine);
+	  workLine = workLine + HTMLworkDates.replace("%data%", work.jobs[job]["dates"]);
+	  workLine = workLine + HTMLworkLocation.replace("%data%", work.jobs[job]["location"]);
+	  workLine = workLine + HTMLworkDescription.replace("%data%", work.jobs[job]["description"]);
+	  
+	  $(".work-entry:last").append(workLine);
+	}
 }
+displayWork();
+$(document).click(function(loc) {
+   logClicks(loc.screenX,loc.screenY);
+});
 
 
-
+$("#main").append(internationalizeButton);
+function inName(){
+	var names = bio.name.split(" ");
+	var fName = names[0].slice(0,1).toUpperCase() + names[0].slice(1).toLowerCase();
+	var lName = names[1].toUpperCase();
+	return fName + " " + lName;
+}
 
 /*var formattedName = HTMLheaderName.replace("%data%",bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%",bio.role);

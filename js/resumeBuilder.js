@@ -62,7 +62,7 @@ var work = {"jobs":
 "description": "Explain about the research and how it’ll be used"
 }, {
 "title": "sales director",
-"employer": "Briela",
+"employer": "Briela",											
 "location": "Botosani, Romania",
 "dates": "15.06.2005-15.10.2012",
 "description": "manage a sales team"
@@ -82,10 +82,41 @@ function displayWork(){
 	}
 }
 displayWork();
-$(document).click(function(loc) {
-   logClicks(loc.screenX,loc.screenY);
-});
+//$(document).click(function(loc) {
+//   logClicks(loc.screenX,loc.screenY);
+//});
+var projects = {
+	"projects":[{
+		"title":"Mobile app user acceptance testing",
+		"dates":"10/11/2015-11/11/2015",
+		"description":"Testing mobile apps following predefined steps and at the end writing a report with sugestions and conclusions, in order to help the design team to improve the user experience.",
+		"images":["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDNMXcxgRTHDHRjj97rEcXH3Y7C6ftIsMMx6BmD12PUPQXdXPQQg"]
+    },
+    {
+		"title":"Mobile app user acceptance testing",
+		"dates":"10/11/2015-11/11/2015",
+		"description":"Testing mobile apps following predefined steps and at the end writing a report with sugestions and conclusions, in order to help the design team to improve the user experience.",
+		"images":["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDNMXcxgRTHDHRjj97rEcXH3Y7C6ftIsMMx6BmD12PUPQXdXPQQg",
+		"http://d2bb8f8g1cmmfi.cloudfront.net/sites/all/themes/mpundit/images/banner_img6_0.png"]
 
+    }
+
+	],
+	"display": function () {}
+}
+for (var pr in projects) {
+	console.log(pr);
+}
+for (var index in projects.projects){
+	console.log(index);
+	$("#projects").append(HTMLprojectStart);
+	var projectLine = HTMLprojectTitle.replace("%data%", projects.projects[index].title) + 
+	HTMLprojectDates.replace("%data%",projects.projects[index].description);
+	for (image in projects.projects[index].images){
+		projectLine = projectLine + HTMLprojectImage.replace("%data%",projects.projects[index].images[image]);
+	}
+	$(".project-entry:last").append(projectLine);
+}
 
 $("#main").append(internationalizeButton);
 function inName(){

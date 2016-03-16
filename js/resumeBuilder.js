@@ -10,8 +10,30 @@ var bio = {
 	},
 	"biopic": "images/me.jpg",
 	"welcomeMessage": "Hello that's me!",
-	"display": function() {}
+	"display": function() {
+		var formattedName = HTMLheaderName.replace("%data%",this.name);
+		var formattedRole = HTMLheaderRole.replace("%data%",this.role);
+		$("#header").prepend(formattedRole);
+		$("#header").prepend(formattedName);
+		for(contact in this.contacts){
+			var formattedContact = HTMLcontactGeneric.replace("%contact%",contact).replace("%data%",this.contacts[contact]);
+			$("#topContacts").append(formattedContact);
+		}
+		var welcomeMessage =  HTMLwelcomeMsg.replace("%data%",this.welcomeMessage);
+		var bioPic =  HTMLbioPic.replace("%data%",this.biopic);
+		$("#header").append(bioPic); 
+		$('#header').append(welcomeMessage);
+		$("#header").append(HTMLskillsStart);
+		for(skill in this.skills){
+			var formattedSkill = HTMLskills.replace("%data%",this.skills[skill]);
+			$("#skills").append(formattedSkill);
+
+		}
+
+
+	}
 };
+bio.display();
 var education = {"schools":
         [{"name":"A.Cuza. University",
         "location":"Iasi-Romania",
@@ -32,28 +54,36 @@ var education = {"schools":
                       "school": "Udacity",
                        "date": "Jan 2016 - Feb 2016",
                        "url": "https://www.udacity.com/course/how-to-use-git-and-github--ud775"}],
-      "display": function () {}
+      "display": function () {
+      	for(var index in this.schools){
+		    $("#education").append(HTMLschoolStart);
+		    var educationLine = HTMLschoolName.replace("%data%",this.schools[index].name)+
+		     HTMLschoolDegree.replace("%data%",this.schools[index].degree) + 
+		    HTMLschoolDates.replace("%data%",this.schools[index].dates) + 
+		    HTMLschoolLocation.replace("%data%",this.schools[index].location);
+		    for ( var m in this.schools[index].major){ 
+		    	educationLine = educationLine + HTMLschoolMajor.replace("%data%",this.schools[index].major[m]);
 
-};
-var formattedName = HTMLheaderName.replace("%data%",bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-for(contact in bio.contacts){
-	var formattedContact = HTMLcontactGeneric.replace("%contact%",contact).replace("%data%",bio.contacts[contact]);
-	$("#topContacts").append(formattedContact);
-}
-var welcomeMessage =  HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
-var bioPic =  HTMLbioPic.replace("%data%",bio.biopic);
-$("#header").append(bioPic); 
-$('#header').append(welcomeMessage);
-$("#header").append(HTMLskillsStart);
-for(skill in bio.skills){
-	var formattedSkill = HTMLskills.replace("%data%",bio.skills[skill]);
-	$("#skills").append(formattedSkill);
+		    }
+		    $(".education-entry:last").append(educationLine);    
 
-}
+		}
+		$("#education").append(HTMLonlineClasses)
 
+		for (var index in this.onlineCourses){
+		    $("#education").append(HTMLschoolStart);
+		    var educationLine = HTMLonlineTitle.replace("%data%",this.onlineCourses[index].title)+
+		    HTMLonlineSchool.replace("%data%",this.onlineCourses[index].school)+
+		    HTMLonlineDates.replace("%data%", this.onlineCourses[index].date)+
+		    HTMLonlineURL.replace("%data%",this.onlineCourses[index].url);
+		    $(".education-entry:last").append(educationLine);
+
+		}
+
+      }
+
+}; 
+education.display();
 var work = {"jobs":
    [{
 "title": "marketing research analist",
@@ -67,22 +97,20 @@ var work = {"jobs":
 "location": "Botosani, Romania",
 "dates": "15.06.2005-15.10.2012",
 "description": "manage a sales team"
-}],"display": function() { }};
-function displayWork(){
-
-	for (job in work.jobs) {
+}],"display": function() { 
+    for (var job in this.jobs) {
 	  $("#workExperience").append(HTMLworkStart);
-	  var workLine = HTMLworkEmployer.replace("%data%", work.jobs[job]['employer'])
-	  + HTMLworkTitle.replace("%data%", work.jobs[job]["title"]);
+	  var workLine = HTMLworkEmployer.replace("%data%", this.jobs[job]['employer'])
+	  + HTMLworkTitle.replace("%data%", this.jobs[job]["title"]);
 	  console.log(workLine);
-	  workLine = workLine + HTMLworkDates.replace("%data%", work.jobs[job]["dates"]);
-	  workLine = workLine + HTMLworkLocation.replace("%data%", work.jobs[job]["location"]);
-	  workLine = workLine + HTMLworkDescription.replace("%data%", work.jobs[job]["description"]);
+	  workLine = workLine + HTMLworkDates.replace("%data%", this.jobs[job]["dates"]);
+	  workLine = workLine + HTMLworkLocation.replace("%data%", this.jobs[job]["location"]);
+	  workLine = workLine + HTMLworkDescription.replace("%data%", this.jobs[job]["description"]);
 	  
 	  $(".work-entry:last").append(workLine);
-	}
-}
-displayWork();
+	}  
+}};
+work.display();
 //$(document).click(function(loc) {
 //   logClicks(loc.screenX,loc.screenY);
 //});
@@ -94,58 +122,29 @@ var projects = {
 		"images":["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDNMXcxgRTHDHRjj97rEcXH3Y7C6ftIsMMx6BmD12PUPQXdXPQQg"]
     }
 	],
-	"display": function () {}
-}
-for (var pr in projects) {
-	console.log(pr);
-}
-for (var index in projects.projects){
-	console.log(index);
-	$("#projects").append(HTMLprojectStart);
-	var projectLine = HTMLprojectTitle.replace("%data%", projects.projects[index].title) + 
-	HTMLprojectDates.replace("%data%",projects.projects[index].description);
-	for (image in projects.projects[index].images){
-		projectLine = projectLine + HTMLprojectImage.replace("%data%",projects.projects[index].images[image]);
-	}
-	$(".project-entry:last").append(projectLine);
+	"display": function () {
+		for (var index in this.projects){
+			$("#projects").append(HTMLprojectStart);
+			var projectLine = HTMLprojectTitle.replace("%data%", this.projects[index].title) + 
+			HTMLprojectDates.replace("%data%", this.projects[index].dates) +
+			 HTMLprojectDescription.replace("%data%", this.projects[index].description);
+			for (image in this.projects[index].images){
+				projectLine = projectLine + HTMLprojectImage.replace("%data%", this.projects[index].images[image]);
+			}
+			$(".project-entry:last").append(projectLine);
+			}
+		}
 }
 
-$("#main").append(internationalizeButton);
+projects.display();
+
+/*$("#main").append(internationalizeButton);
 function inName(){
 	var names = bio.name.split(" ");
 	var fName = names[0].slice(0,1).toUpperCase() + names[0].slice(1).toLowerCase();
 	var lName = names[1].toUpperCase();
 	return fName + " " + lName;
-}
+}*/
  
 $("#mapDiv").append(googleMap);
 initializeMap();
-/*var formattedName = HTMLheaderName.replace("%data%",bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-var formattedPhoneNumber = HTMLcontactGeneric.replace("%data%",bio.telefonNumber).replace("%contact%", "Phone");
-var formattedEmail = HTMLcontactGeneric.replace("%data%",bio.email).replace("%contact%", "Email");
-$("#topContacts").append(formattedPhoneNumber);
-$("#topContacts").append(formattedEmail);
-var welcomeMessage =  HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
-var bioPic =  HTMLbioPic.replace("%data%",bio.pictureUrl);
-$("#header").append(bioPic); 
-$('#header').append(welcomeMessage);
-var skillsStart = HTMLskillsStart;
-$("#header").append(skillsStart);
-for (var i = 0; i<bio.skills.length; i++){
-	var skill = HTMLskills.replace("%data%",bio.skills[i]);																		
-	console.log(skill);
-	$("#skills").append(skill);
-};+
-
-var employerJob = HTMLworkEmployer.replace("%data%",work[0].employer);
-var titleJob = HTMLworkTitle.replace("%data%",work[0].title);
-var periodjob = HTMLworkDates.replace("%data%",work[0].period); 
-var descriptionJob = HTMLworkDescription.replace("%data%",work[0].description);
-var city = HTMLworkLocation.replace("%data%",work[0].city + ", " + work[0].country);
-$("#workExperience").append(HTMLworkStart);
-$(".work-entry").append(employerJob);
-$(".work-entry").append(titleJob);*/
-

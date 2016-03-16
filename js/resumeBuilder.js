@@ -5,7 +5,8 @@ var bio = {
 	"contacts": {
 		"mobile": "0123456789",
 	    "email": "alina.ghetler@gmail.com",
-	    "github": "alinaberlin"
+	    "github": "alinaberlin",
+	    "location":"Botosani"
 	},
 	"biopic": "images/me.jpg",
 	"welcomeMessage": "Hello that's me!",
@@ -91,16 +92,7 @@ var projects = {
 		"dates":"10/11/2015-11/11/2015",
 		"description":"Testing mobile apps following predefined steps and at the end writing a report with sugestions and conclusions, in order to help the design team to improve the user experience.",
 		"images":["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDNMXcxgRTHDHRjj97rEcXH3Y7C6ftIsMMx6BmD12PUPQXdXPQQg"]
-    },
-    {
-		"title":"Mobile app user acceptance testing",
-		"dates":"10/11/2015-11/11/2015",
-		"description":"Testing mobile apps following predefined steps and at the end writing a report with sugestions and conclusions, in order to help the design team to improve the user experience.",
-		"images":["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDNMXcxgRTHDHRjj97rEcXH3Y7C6ftIsMMx6BmD12PUPQXdXPQQg",
-		"http://d2bb8f8g1cmmfi.cloudfront.net/sites/all/themes/mpundit/images/banner_img6_0.png"]
-
     }
-
 	],
 	"display": function () {}
 }
@@ -125,7 +117,9 @@ function inName(){
 	var lName = names[1].toUpperCase();
 	return fName + " " + lName;
 }
-
+ 
+$("#mapDiv").append(googleMap);
+initializeMap();
 /*var formattedName = HTMLheaderName.replace("%data%",bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
 $("#header").prepend(formattedRole);

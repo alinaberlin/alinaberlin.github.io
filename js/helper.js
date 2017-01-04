@@ -50,10 +50,16 @@ var HTMLschoolLocation = '<div class="location-text">%data%</div>';
 var HTMLschoolMajor = '<em><br>Major: %data%</em>';
 
 var HTMLonlineClasses = '<h3>Online Classes</h3>';
-var HTMLonlineTitle = '<a href="#">%data%';
+var HTMLonlineTitle = '%data%';
 var HTMLonlineSchool = ' - %data%</a>';
 var HTMLonlineDates = '<div class="date-text">%data%</div>';
-var HTMLonlineURL = '<br><a href="#">%data%</a>';
+var HTMLonlineURL = '<br><a href="%data%">';
+
+var HTMLonsiteClasses= '<h3>Onsite Classes</h3>';
+var HTMLonsiteTitle = '%data%';
+var HTMLonsiteSchool = ' - %data%</a>';
+var HTMLonsiteDates = '<div class="date-text">%data%</div>';
+var HTMLonsiteURL = '<br><a href="%data%">';
 
 var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';

@@ -9,7 +9,7 @@ var bio = {
 	    "location":"Botosani"
 	},
 	"biopic": "images/me.jpg",
-	"welcomeMessage": "Hello that's me!",
+	"welcomeMessage": "Hello that's me and this is my first site because I LOVE to code!",
 	"display": function() {
 		var formattedName = HTMLheaderName.replace("%data%",this.name);
 		var formattedRole = HTMLheaderRole.replace("%data%",this.role);
@@ -40,9 +40,39 @@ var education = {"schools":
         "degree" :"Finance" ,
         "major":["economy","economy","informatics"],
         "dates":"15.06.2004",
-        "url":"http://www.uaic.ro/"					
+        "url":"http://www.uaic.ro/"	
+
     }],
-    "onlineCourses":[{"title":"Python for everbody",
+"onsiteCourses" :[ { "title" : "Creative web-development",
+                   "school" :"ReDi School of Digital Integration",
+                   "date" : "Oct  2016- Feb 2017",
+                   "url" : "http://www.redi-school.org/"
+                   },
+                   {
+                    "title" : "Back-end Development, Basic Java",
+                   "school" :"ReDi School of Digital Integration",
+                   "date" : "Oct 2016- Feb 2017",
+                   "url" : "http://www.redi-school.org/"
+	                 }
+                   ],   
+"onlineCourses":[  {"title":" Full-Stack Web-Development",
+                   "school" :" Freecodecamp",
+                   "date" : "Oct 2016 - present",
+                    "url" : "https://www.freecodecamp.com"
+                    },
+                    {"title": "Web-Development",
+                    "school" :"Careerfoundry",
+                    "date" :"Ian 2017 - present",
+                    "url" : "https://careerfoundry.com/en/"
+                    },
+                    {"title": "Make a site - Bootstrap",
+                    "school" :"Codeacademy",
+                    "date" :"Oct 2016 ",
+                    "url" : "https://www.codecademy.com"
+                    },
+
+
+                     {"title":"Python for everbody",
                        "school": "Coursera",
                         "date": "Jan 2016 - Feb 2016",
                         "url": ""},
@@ -72,13 +102,23 @@ var education = {"schools":
 
 		for (var index in this.onlineCourses){
 		    $("#education").append(HTMLschoolStart);
-		    var educationLine = HTMLonlineTitle.replace("%data%",this.onlineCourses[index].title)+
+		    var educationLine = HTMLonlineURL.replace("%data%",this.onlineCourses[index].url) + 
+		    HTMLonlineTitle.replace("%data%",this.onlineCourses[index].title)+
 		    HTMLonlineSchool.replace("%data%",this.onlineCourses[index].school)+
-		    HTMLonlineDates.replace("%data%", this.onlineCourses[index].date)+
-		    HTMLonlineURL.replace("%data%",this.onlineCourses[index].url);
+		    HTMLonlineDates.replace("%data%", this.onlineCourses[index].date);
 		    $(".education-entry:last").append(educationLine);
 
 		}
+		 $("#education").append(HTMLonsiteClasses)
+		for (var index in this.onsiteCourses){
+		    $("#education").append(HTMLschoolStart);
+		    var educationLine = HTMLonsiteURL.replace("%data%",this.onsiteCourses[index].url) + 
+		    HTMLonsiteTitle.replace("%data%",this.onsiteCourses[index].title)+
+		    HTMLonsiteSchool.replace("%data%",this.onsiteCourses[index].school)+
+		    HTMLonsiteDates.replace("%data%", this.onsiteCourses[index].date);
+		    $(".education-entry:last").append(educationLine);
+
+		} 
 
       }
 
@@ -89,7 +129,7 @@ var work = {"jobs":
 "title": "marketing research analist",
 "employer": "Trend Test GmbH",
 "location": "Berlin, Germany",
-"dates": "1.05.2015-present",
+"dates": "1.05.2015-1.5.2016",
 "description": "Explain about the research and how it’ll be used"
 }, {
 "title": "sales director",

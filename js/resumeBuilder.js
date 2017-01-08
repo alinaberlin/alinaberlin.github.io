@@ -160,6 +160,12 @@ var projects = {
 		"dates":"10/11/2015-11/11/2015",
 		"description":"Testing mobile apps following predefined steps and at the end writing a report with sugestions and conclusions, in order to help the design team to improve the user experience.",
 		"images":["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDNMXcxgRTHDHRjj97rEcXH3Y7C6ftIsMMx6BmD12PUPQXdXPQQg"]
+    },
+          {
+          "title" : "Game of life",
+          "dates" : "17/12/2016-21/12/2016",
+          "description":" My first game app following the Conway's Game 7of Life rules",
+          "images":[]
     }
 	],
 	"display": function () {

@@ -159,19 +159,24 @@ var projects = {
 		"title":"Mobile app user acceptance testing",
 		"dates":"10/11/2015-11/11/2015",
 		"description":"Testing mobile apps following predefined steps and at the end writing a report with sugestions and conclusions, in order to help the design team to improve the user experience.",
-		"images":["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDNMXcxgRTHDHRjj97rEcXH3Y7C6ftIsMMx6BmD12PUPQXdXPQQg"]
+		"images":["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDNMXcxgRTHDHRjj97rEcXH3Y7C6ftIsMMx6BmD12PUPQXdXPQQg"],
+        "url": "#"
     },
           {
           "title" : "Game of life",
           "dates" : "17/12/2016-21/12/2016",
-          "description":" My first game app following the Conway's Game 7of Life rules",
-          "images":[]
+          "description":" My first game app following the Conway's Game of Life rules",
+          "images":[],
+          "url": "https://gist.github.com/alinaberlin/1755e81d5000f34656948d0239be9521"
     }
 	],
 	"display": function () {
+
+
+
 		for (var index in this.projects){
 			$("#projects").append(HTMLprojectStart);
-			var projectLine = HTMLprojectTitle.replace("%data%", this.projects[index].title) + 
+			var projectLine = HTMLprojectTitle.replace("%data%", this.projects[index].title).replace("%dataUrl%", this.projects[index].url) + 
 			HTMLprojectDates.replace("%data%", this.projects[index].dates) +
 			 HTMLprojectDescription.replace("%data%", this.projects[index].description);
 			for (image in this.projects[index].images){
